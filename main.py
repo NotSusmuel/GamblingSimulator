@@ -5,41 +5,63 @@ import slotmachine
 # Setup Screen
 screen = turtle.Screen()
 screen.title("Gambling Simulator")
-screen.bgcolor("green")
+screen.bgcolor("#1a1a2e")  # Dark blue-purple background
 screen.setup(width=800, height=600)
 turtle.tracer(0)
 
-# Button zeichnen
-def draw_button(x, y, width, height, text):
+# Draw title
+def draw_title():
+    title = turtle.Turtle()
+    title.hideturtle()
+    title.penup()
+    title.goto(0, 200)
+    title.color("#eef4ed")
+    title.write("🎰 CASINO ROYALE 🎰", align="center", font=("Arial", 36, "bold"))
+    title.goto(0, 160)
+    title.color("#16213e")
+    title.write("━━━━━━━━━━━━━━━━━━━━", align="center", font=("Arial", 20, "bold"))
+
+# Button zeichnen with rounded corners
+def draw_button(x, y, width, height, text, color="#e94560"):
     btn = turtle.Turtle()
     btn.hideturtle()
     btn.penup()
     btn.goto(x, y)
     btn.pendown()
+    btn.pensize(3)
+    btn.color("#0f3460")  # Border color
     btn.begin_fill()
-    btn.fillcolor("lightblue")
+    btn.fillcolor(color)
+    
+    # Draw rounded rectangle
+    radius = 15
     for _ in range(2):
-        btn.forward(width)
-        btn.right(90)
-        btn.forward(height)
-        btn.right(90)
+        btn.forward(width - 2*radius)
+        btn.circle(-radius, 90)
+        btn.forward(height - 2*radius)
+        btn.circle(-radius, 90)
+    
     btn.end_fill()
     btn.penup()
     btn.goto(x + width/2, y - height/2 - 10)
-    btn.write(text, align="center", font=("Arial", 24, "bold"))
+    btn.color("#ffffff")
+    btn.write(text, align="center", font=("Arial", 20, "bold"))
     return (x, x+width, y-height, y)  # Button-Region
 
+# Draw title
+draw_title()
+
 # Buttons erzeugen
-blackjack_btn = draw_button(-100, 100, 200, 60, "Blackjack")
-slot_btn = draw_button(-100, 0, 200, 60, "Slot Machine")
-exit_btn = draw_button(-100, -100, 200, 60, "End Game")
+blackjack_btn = draw_button(-100, 80, 200, 50, "♠️ Blackjack ♠️", "#e94560")
+slot_btn = draw_button(-100, 10, 200, 50, "🎰 Slot Machine", "#e94560")
+exit_btn = draw_button(-100, -60, 200, 50, "Exit Game", "#533483")
 
 turtle.update()
 
 # Hilfsfunktion: Einsatz abfragen
 def get_bet_amount():
     try:
-        bet = turtle.textinput("Select Bet", "Please select bet amount(5'000 max.):")
+        bet = turtle.textinput("💰 Place Your Bet", "Enter bet amount (max $5,000):")
         if bet is None:
             return None
         elif int(bet) > 5000:
