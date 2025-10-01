@@ -22,36 +22,36 @@ def blackjack(bet_amount):
 
     # Set up the screen
     screen = turtle.Screen()
-    screen.title("Blackjack")
-    screen.bgcolor("green")
+    screen.title("♠️ Blackjack ♠️")
+    screen.bgcolor("#0f3460")  # Dark blue background
     screen.setup(width=800, height=600)
     turtle.tracer(0)
     # Render the Balance
     balance_amount = load_balance()
     balance = turtle.Turtle()
-    balance.color("white")
+    balance.color("#eef4ed")
     balance.penup()
     balance.goto(-350, 250)
     balance.pendown()
     balance.hideturtle()
     balance.clear()
-    balance.write("Balance: $"+str(balance_amount), align="left", font=("Arial", 24, "normal"))
+    balance.write("💰 Balance: $"+str(balance_amount), align="left", font=("Arial", 20, "bold"))
     def update_balance(amount):
         global balance_amount
         balance_amount += amount
         save_balance(balance_amount)
         balance.clear()
-        balance.write("Balance: $"+str(balance_amount), align="left", font=("Arial", 24, "normal"))
+        balance.write("💰 Balance: $"+str(balance_amount), align="left", font=("Arial", 20, "bold"))
     def update_negative_balance(amount):
         global balance_amount
         balance_amount -= amount
         save_balance(balance_amount)
         balance.clear()
-        balance.write("Balance: $"+str(balance_amount), align="left", font=("Arial", 24, "normal"))
+        balance.write("💰 Balance: $"+str(balance_amount), align="left", font=("Arial", 20, "bold"))
 
     # Set up the game area
     game_area = turtle.Turtle()
-    game_area.color("white")
+    game_area.color("#16213e")
     game_area.penup()
     game_area.goto(-350, 200) # durchmesser halbkreis 700
     game_area.pensize(5)
@@ -66,19 +66,24 @@ def blackjack(bet_amount):
         start_button = turtle.Turtle()
         start_button.hideturtle()
         start_button.penup()
-        start_button.goto(-50, -250) # linke untere ecke
+        start_button.goto(-60, -250) # linke untere ecke
         start_button.pendown()
         start_button.pensize(3)
+        start_button.color("#16213e")
         start_button.begin_fill()
-        start_button.fillcolor("lightblue")
-        start_button.goto(50, -250) # rechte untere ecke
-        start_button.goto(50, -210) # rechte obere ecke
-        start_button.goto(-50, -210) # linke obere ecke
-        start_button.goto(-50, -250) # linke untere ecke
+        start_button.fillcolor("#e94560")
+        # Draw rounded rectangle
+        radius = 10
+        for _ in range(2):
+            start_button.forward(120 - 2*radius)
+            start_button.circle(-radius, 90)
+            start_button.forward(40 - 2*radius)
+            start_button.circle(-radius, 90)
         start_button.end_fill()
+        start_button.penup()
         start_button.goto(0, -250)
-        start_button.pendown()
-        start_button.write("Start", align="center", font=("Arial", 24, "normal"))
+        start_button.color("#ffffff")
+        start_button.write("▶️ Start", align="center", font=("Arial", 18, "bold"))
         start_button.penup()
         startbutton=True
 
@@ -87,19 +92,24 @@ def blackjack(bet_amount):
         draw_card_button = turtle.Turtle()
         draw_card_button.hideturtle()
         draw_card_button.penup()
-        draw_card_button.goto(90, -250) # linke untere ecke
+        draw_card_button.goto(80, -250) # starting point
         draw_card_button.pendown()
         draw_card_button.pensize(3)
+        draw_card_button.color("#16213e")
         draw_card_button.begin_fill()
-        draw_card_button.fillcolor("lightblue")
-        draw_card_button.goto(90, -210) # linke obere ecke
-        draw_card_button.goto(250, -210) # rechte obere ecke
-        draw_card_button.goto(250, -250) # rechte untere ecke
-        draw_card_button.goto(90, -250) # linke untere ecke
+        draw_card_button.fillcolor("#e94560")
+        # Draw rounded rectangle
+        radius = 10
+        for _ in range(2):
+            draw_card_button.forward(180 - 2*radius)
+            draw_card_button.circle(-radius, 90)
+            draw_card_button.forward(40 - 2*radius)
+            draw_card_button.circle(-radius, 90)
         draw_card_button.end_fill()
+        draw_card_button.penup()
         draw_card_button.goto(170, -250)
-        draw_card_button.pendown()
-        draw_card_button.write("Draw Card", align="center", font=("Arial", 24, "normal"))
+        draw_card_button.color("#ffffff")
+        draw_card_button.write("🎴 Draw Card", align="center", font=("Arial", 18, "bold"))
         draw_card_button.penup()
 
     def draw_reveal_dealer_button():
@@ -107,20 +117,24 @@ def blackjack(bet_amount):
         reveal_dealer_button = turtle.Turtle()
         reveal_dealer_button.hideturtle()
         reveal_dealer_button.penup()
-        reveal_dealer_button.goto(-100, 250) # linke untere ecke
+        reveal_dealer_button.goto(-110, 250) # starting point
         reveal_dealer_button.pendown()
         reveal_dealer_button.pensize(3)
+        reveal_dealer_button.color("#16213e")
         reveal_dealer_button.begin_fill()
-        reveal_dealer_button.fillcolor("lightblue")
-        reveal_dealer_button.goto(-100, 210) # linke obere ecke
-        reveal_dealer_button.goto(100, 210) # rechte obere ecke
-        reveal_dealer_button.goto(100, 250) # rechte untere ecke
-        reveal_dealer_button.goto(-100, 250) # linke untere ecke
+        reveal_dealer_button.fillcolor("#e94560")
+        # Draw rounded rectangle
+        radius = 10
+        for _ in range(2):
+            reveal_dealer_button.forward(220 - 2*radius)
+            reveal_dealer_button.circle(-radius, 90)
+            reveal_dealer_button.forward(40 - 2*radius)
+            reveal_dealer_button.circle(-radius, 90)
         reveal_dealer_button.end_fill()
         reveal_dealer_button.penup()
         reveal_dealer_button.goto(0, 210)
-        reveal_dealer_button.pendown()
-        reveal_dealer_button.write("Reveal Dealer", align="center", font=("Arial", 24, "normal"))
+        reveal_dealer_button.color("#ffffff")
+        reveal_dealer_button.write("🎲 Reveal Dealer", align="center", font=("Arial", 18, "bold"))
         reveal_dealer_button.penup()
 
     def draw_onscreen_text(text):
@@ -129,8 +143,8 @@ def blackjack(bet_amount):
         onscreen_text.penup()
         onscreen_text.goto(0, 0)
         onscreen_text.pendown()
-        onscreen_text.color("white")
-        onscreen_text.write(text, align="center", font=("Arial", 36, "normal"))
+        onscreen_text.color("#eef4ed")
+        onscreen_text.write(text, align="center", font=("Arial", 42, "bold"))
         turtle.update()
         onscreen_text.penup()
         time.sleep(2)
@@ -141,24 +155,27 @@ def blackjack(bet_amount):
     card = turtle.Turtle()
     card.hideturtle()
     def draw_card(x, y, card_value):
-        colorofnumber = random.choice(["black", "red"])
+        colorofnumber = random.choice(["#e94560", "#16213e"])
         card.penup()
         card.goto(x, y)
         card.pendown()
         card.pensize(3)
-        card.fillcolor("white")
+        card.color("#16213e")
+        card.fillcolor("#eef4ed")
         card.begin_fill()
+        # Draw rounded rectangle for card
+        radius = 8
         for _ in range(2):
-            card.forward(60)
-            card.right(90)
-            card.forward(90)
-            card.right(90)
+            card.forward(60 - 2*radius)
+            card.circle(-radius, 90)
+            card.forward(90 - 2*radius)
+            card.circle(-radius, 90)
         card.end_fill()
         card.penup()
         card.goto(x + 30, y - 60)
         card.color(colorofnumber)
-        card.write(str(card_value), align="center", font=("Arial", 24, "normal"))
-        card.color("black")
+        card.write(str(card_value), align="center", font=("Arial", 28, "bold"))
+        card.color("#16213e")
         card.hideturtle()
         turtle.update()
 
@@ -213,9 +230,9 @@ def blackjack(bet_amount):
 
     def button_click(x_click, y_click):
         global deck, old_card_value, card_value, startbutton, total
-        if -50 <= x_click <= 50 and -250 <= y_click <= -210 and startbutton == True:
+        if -60 <= x_click <= 60 and -250 <= y_click <= -210 and startbutton == True:
             start_game()
-        elif 90 <= x_click <= 250 and -250 <= y_click <= -210 and startbutton == False:
+        elif 80 <= x_click <= 260 and -250 <= y_click <= -210 and startbutton == False:
             old_card_value += card_value
             stackoldcards()
             card_value = random.choice(deck)
@@ -231,7 +248,7 @@ def blackjack(bet_amount):
                 draw_onscreen_text("Blackjack! You Win!")
                 update_balance(bet_amount*2)
                 newgame()
-        elif -100 <= x_click <= 100 and 210 <= y_click <= 250 and startbutton == False:
+        elif -110 <= x_click <= 110 and 210 <= y_click <= 250 and startbutton == False:
             reveal_dealer_button.clear()
             draw_card_button.clear()
             total = old_card_value + card_value

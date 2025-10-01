@@ -20,41 +20,42 @@ def slotmachine(bet_amount):
             f.write(str(amount))
     # Set up the screen
     screen = turtle.Screen()
-    screen.title("Slot Machine")
-    screen.bgcolor("black")
+    screen.title("🎰 Slot Machine 🎰")
+    screen.bgcolor("#1a1a2e")  # Dark blue-purple background
 
     turtle.tracer(0)
 
     # Render the Balance
     balance_amount = load_balance()
     balance = turtle.Turtle()
-    balance.color("white")
+    balance.color("#eef4ed")
     balance.penup()
     balance.goto(-290, 250)
     balance.pendown()
     balance.hideturtle()
     balance.clear()
-    balance.write("Balance: $"+str(balance_amount), align="left", font=("Arial", 24, "normal"))
+    balance.write("💰 Balance: $"+str(balance_amount), align="left", font=("Arial", 20, "bold"))
     def update_balance(amount):
         global balance_amount
         balance_amount += amount
         save_balance(balance_amount)
         balance.clear()
-        balance.write("Balance: $"+str(balance_amount), align="left", font=("Arial", 24, "normal"))
+        balance.write("💰 Balance: $"+str(balance_amount), align="left", font=("Arial", 20, "bold"))
     def update_negative_balance(amount):
         global balance_amount
         balance_amount -= amount
         save_balance(balance_amount)
         balance.clear()
-        balance.write("Balance: $"+str(balance_amount), align="left", font=("Arial", 24, "normal"))
+        balance.write("💰 Balance: $"+str(balance_amount), align="left", font=("Arial", 20, "bold"))
 
     #draw the slot machine frame
     frame = turtle.Turtle()
-    frame.color("white")
-    frame.pensize(5)
+    frame.color("#e94560")
+    frame.pensize(6)
     frame.penup()
     frame.goto(-150, 100)
     frame.pendown()
+    frame.fillcolor("#0f3460")
     frame.begin_fill()
     def rounded_corner():
             for _ in range(9):
@@ -72,21 +73,21 @@ def slotmachine(bet_amount):
     lever = turtle.Turtle()
     lever.penup()
     lever.shape("circle")
-    lever.color("red")
+    lever.color("#e94560")
     lever.shapesize(stretch_wid=2, stretch_len=2)
     lever.goto(170, 100)
     lever.pendown()
 
     def drawlever(h):
         lever.clear()
-        lever.color("black")
+        lever.color("#533483")
         lever.goto(170, h)
         lever.pendown()
-        lever.pensize(10)
+        lever.pensize(12)
         lever.goto(170, 0)
         lever.goto(170, h)
         lever.penup()
-        lever.color("red")
+        lever.color("#e94560")
         turtle.update()
     drawlever(100)
 
@@ -169,9 +170,9 @@ def slotmachine(bet_amount):
     row1=turtle.Turtle()
     row2=turtle.Turtle()
     row3=turtle.Turtle()
-    row1.color("black")
-    row2.color("black")
-    row3.color("black")
+    row1.color("#eef4ed")
+    row2.color("#eef4ed")
+    row3.color("#eef4ed")
     row1.hideturtle()
     row2.hideturtle()
     row3.hideturtle()
@@ -311,11 +312,11 @@ def slotmachine(bet_amount):
         row2.clear()
         row3.clear()
         row1.write(row1ashape + " " + row1bshape + " " + row1cshape, align="center", font=("Segoe UI Emoji", 48, "normal"))
-        row2.color("red")
+        row2.color("#e94560")
         row2.write(row2ashape + " " + row2bshape + " " + row2cshape, align="center", font=("Segoe UI Emoji", 48, "normal"))
         row3.write(row3ashape + " " + row3bshape + " " + row3cshape, align="center", font=("Segoe UI Emoji", 48, "normal"))
         turtle.update()
-        row2.color("black")
+        row2.color("#eef4ed")
 
     a, b, c = winorlose()
 
