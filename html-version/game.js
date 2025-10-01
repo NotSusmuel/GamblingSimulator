@@ -435,24 +435,30 @@ async function animateSpin(finalResult) {
         document.getElementById('slot-row-3')
     ];
     
-    // Fast spin animation
+    // Fast spin animation - all symbols in same column show same symbol
     for (let i = 0; i < 20; i++) {
+        const col0 = getRandomSymbol();
+        const col1 = getRandomSymbol();
+        const col2 = getRandomSymbol();
         rows.forEach(row => {
             const symbols = row.querySelectorAll('.slot-symbol');
-            symbols.forEach(symbol => {
-                symbol.textContent = getRandomSymbol();
-            });
+            symbols[0].textContent = col0;
+            symbols[1].textContent = col1;
+            symbols[2].textContent = col2;
         });
         await sleep(50);
     }
     
-    // Slow down for first reel
+    // Slow down for first reel - all rows show same symbol in column 0
     for (let i = 0; i < 5; i++) {
+        const col0 = getRandomSymbol();
+        const col1 = getRandomSymbol();
+        const col2 = getRandomSymbol();
         rows.forEach(row => {
             const symbols = row.querySelectorAll('.slot-symbol');
-            symbols[0].textContent = getRandomSymbol();
-            symbols[1].textContent = getRandomSymbol();
-            symbols[2].textContent = getRandomSymbol();
+            symbols[0].textContent = col0;
+            symbols[1].textContent = col1;
+            symbols[2].textContent = col2;
         });
         await sleep(100);
     }
@@ -465,12 +471,14 @@ async function animateSpin(finalResult) {
     });
     await sleep(200);
     
-    // Slow down for second reel
+    // Slow down for second reel - all rows show same symbol in columns 1 and 2
     for (let i = 0; i < 5; i++) {
+        const col1 = getRandomSymbol();
+        const col2 = getRandomSymbol();
         rows.forEach(row => {
             const symbols = row.querySelectorAll('.slot-symbol');
-            symbols[1].textContent = getRandomSymbol();
-            symbols[2].textContent = getRandomSymbol();
+            symbols[1].textContent = col1;
+            symbols[2].textContent = col2;
         });
         await sleep(150);
     }
@@ -482,11 +490,12 @@ async function animateSpin(finalResult) {
     });
     await sleep(200);
     
-    // Slow down for third reel
+    // Slow down for third reel - all rows show same symbol in column 2
     for (let i = 0; i < 5; i++) {
+        const col2 = getRandomSymbol();
         rows.forEach(row => {
             const symbols = row.querySelectorAll('.slot-symbol');
-            symbols[2].textContent = getRandomSymbol();
+            symbols[2].textContent = col2;
         });
         await sleep(200);
     }
