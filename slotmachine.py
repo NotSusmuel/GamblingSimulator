@@ -80,13 +80,16 @@ def slotmachine(bet_amount):
 
     def drawlever(h):
         lever.clear()
+        lever.penup()
         lever.color("#533483")
-        lever.goto(170, h)
+        # Draw the handle (stays at position 100)
+        lever.goto(170, 100)
         lever.pendown()
         lever.pensize(12)
         lever.goto(170, 0)
-        lever.goto(170, h)
         lever.penup()
+        # Draw the ball (moves to position h)
+        lever.goto(170, h)
         lever.color("#e94560")
         turtle.update()
     drawlever(100)

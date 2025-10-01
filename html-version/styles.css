@@ -438,16 +438,16 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.lever.pulling {
+.lever.pulling::before {
     animation: leverPull 0.5s ease-in-out;
 }
 
 @keyframes leverPull {
     0%, 100% {
-        transform: translateY(0);
+        transform: translateX(-50%) translateY(0);
     }
     50% {
-        transform: translateY(50px);
+        transform: translateX(-50%) translateY(50px);
     }
 }
 
