@@ -81,9 +81,9 @@ def blackjack(bet_amount):
             start_button.circle(-radius, 90)
         start_button.end_fill()
         start_button.penup()
-        start_button.goto(0, -250)
+        start_button.goto(0, -243)
         start_button.color("#ffffff")
-        start_button.write("▶️ Start", align="center", font=("Arial", 18, "bold"))
+        start_button.write("▶️ Start", align="center", font=("Arial", 16, "bold"))
         start_button.penup()
         startbutton=True
 
@@ -107,9 +107,9 @@ def blackjack(bet_amount):
             draw_card_button.circle(-radius, 90)
         draw_card_button.end_fill()
         draw_card_button.penup()
-        draw_card_button.goto(170, -250)
+        draw_card_button.goto(170, -243)
         draw_card_button.color("#ffffff")
-        draw_card_button.write("🎴 Draw Card", align="center", font=("Arial", 18, "bold"))
+        draw_card_button.write("🎴 Draw Card", align="center", font=("Arial", 16, "bold"))
         draw_card_button.penup()
 
     def draw_reveal_dealer_button():
@@ -132,9 +132,9 @@ def blackjack(bet_amount):
             reveal_dealer_button.circle(-radius, 90)
         reveal_dealer_button.end_fill()
         reveal_dealer_button.penup()
-        reveal_dealer_button.goto(0, 210)
+        reveal_dealer_button.goto(0, 223)
         reveal_dealer_button.color("#ffffff")
-        reveal_dealer_button.write("🎲 Reveal Dealer", align="center", font=("Arial", 18, "bold"))
+        reveal_dealer_button.write("🎲 Reveal Dealer", align="center", font=("Arial", 16, "bold"))
         reveal_dealer_button.penup()
 
     def draw_onscreen_text(text):
