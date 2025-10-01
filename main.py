@@ -43,7 +43,7 @@ def draw_button(x, y, width, height, text, color="#e94560"):
     
     btn.end_fill()
     btn.penup()
-    btn.goto(x + width/2, y - height/2 - 5)
+    btn.goto(x + width/2, y - height/2 - 8)
     btn.color("#ffffff")
     btn.write(text, align="center", font=("Arial", 16, "bold"))
     return (x, x+width, y-height, y)  # Button-Region
