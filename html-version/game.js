@@ -435,76 +435,106 @@ async function animateSpin(finalResult) {
         document.getElementById('slot-row-3')
     ];
     
-    // Fast spin animation - all symbols in same column show same symbol
+    // Fast spin animation - each symbol animates independently
     for (let i = 0; i < 20; i++) {
-        const col0 = getRandomSymbol();
-        const col1 = getRandomSymbol();
-        const col2 = getRandomSymbol();
         rows.forEach(row => {
             const symbols = row.querySelectorAll('.slot-symbol');
-            symbols[0].textContent = col0;
-            symbols[1].textContent = col1;
-            symbols[2].textContent = col2;
+            symbols[0].textContent = getRandomSymbol();
+            symbols[1].textContent = getRandomSymbol();
+            symbols[2].textContent = getRandomSymbol();
         });
         await sleep(50);
     }
     
-    // Slow down for first reel - all rows show same symbol in column 0
-    for (let i = 0; i < 5; i++) {
-        const col0 = getRandomSymbol();
-        const col1 = getRandomSymbol();
-        const col2 = getRandomSymbol();
+    // Slow down - each symbol still independent
+    for (let i = 0; i < 10; i++) {
         rows.forEach(row => {
             const symbols = row.querySelectorAll('.slot-symbol');
-            symbols[0].textContent = col0;
-            symbols[1].textContent = col1;
-            symbols[2].textContent = col2;
+            symbols[0].textContent = getRandomSymbol();
+            symbols[1].textContent = getRandomSymbol();
+            symbols[2].textContent = getRandomSymbol();
         });
         await sleep(100);
     }
     
-    // Stop first reel
+    // Get symbol references for easier access
     const [a, b, c] = finalResult;
-    rows.forEach(row => {
-        const symbols = row.querySelectorAll('.slot-symbol');
-        symbols[0].textContent = getSymbolByNumber(a);
-    });
-    await sleep(200);
+    const row1Symbols = rows[0].querySelectorAll('.slot-symbol');
+    const row2Symbols = rows[1].querySelectorAll('.slot-symbol');
+    const row3Symbols = rows[2].querySelectorAll('.slot-symbol');
     
-    // Slow down for second reel - all rows show same symbol in columns 1 and 2
+    // Set column 0 to result in row 1, other columns random
+    row3Symbols[0].textContent = row2Symbols[0].textContent;
+    row3Symbols[1].textContent = row2Symbols[1].textContent;
+    row3Symbols[2].textContent = row2Symbols[2].textContent;
+    row2Symbols[0].textContent = row1Symbols[0].textContent;
+    row2Symbols[1].textContent = row1Symbols[1].textContent;
+    row2Symbols[2].textContent = row1Symbols[2].textContent;
+    row1Symbols[0].textContent = getSymbolByNumber(a);
+    row1Symbols[1].textContent = getRandomSymbol();
+    row1Symbols[2].textContent = getRandomSymbol();
+    await sleep(100);
+    
+    // Scroll down - now row 2 has result in column 0
+    row3Symbols[0].textContent = row2Symbols[0].textContent;
+    row3Symbols[1].textContent = row2Symbols[1].textContent;
+    row3Symbols[2].textContent = row2Symbols[2].textContent;
+    row2Symbols[0].textContent = row1Symbols[0].textContent;
+    row2Symbols[1].textContent = row1Symbols[1].textContent;
+    row2Symbols[2].textContent = row1Symbols[2].textContent;
+    row1Symbols[0].textContent = getRandomSymbol();
+    row1Symbols[1].textContent = getRandomSymbol();
+    row1Symbols[2].textContent = getRandomSymbol();
+    await sleep(100);
+    
+    // Continue animating columns 1 and 2 only
     for (let i = 0; i < 5; i++) {
-        const col1 = getRandomSymbol();
-        const col2 = getRandomSymbol();
-        rows.forEach(row => {
-            const symbols = row.querySelectorAll('.slot-symbol');
-            symbols[1].textContent = col1;
-            symbols[2].textContent = col2;
-        });
-        await sleep(150);
+        row3Symbols[1].textContent = row2Symbols[1].textContent;
+        row3Symbols[2].textContent = row2Symbols[2].textContent;
+        row2Symbols[1].textContent = row1Symbols[1].textContent;
+        row2Symbols[2].textContent = row1Symbols[2].textContent;
+        row1Symbols[1].textContent = getRandomSymbol();
+        row1Symbols[2].textContent = getRandomSymbol();
+        await sleep(100);
     }
     
-    // Stop second reel
-    rows.forEach(row => {
-        const symbols = row.querySelectorAll('.slot-symbol');
-        symbols[1].textContent = getSymbolByNumber(b);
-    });
+    // Set column 1 to result in row 1
+    row3Symbols[1].textContent = row2Symbols[1].textContent;
+    row3Symbols[2].textContent = row2Symbols[2].textContent;
+    row2Symbols[1].textContent = row1Symbols[1].textContent;
+    row2Symbols[2].textContent = row1Symbols[2].textContent;
+    row1Symbols[1].textContent = getSymbolByNumber(b);
+    row1Symbols[2].textContent = getRandomSymbol();
+    await sleep(100);
+    
+    // Scroll down - now row 2 has result in columns 0 and 1
+    row3Symbols[1].textContent = row2Symbols[1].textContent;
+    row3Symbols[2].textContent = row2Symbols[2].textContent;
+    row2Symbols[1].textContent = row1Symbols[1].textContent;
+    row2Symbols[2].textContent = row1Symbols[2].textContent;
+    row1Symbols[1].textContent = getRandomSymbol();
+    row1Symbols[2].textContent = getRandomSymbol();
     await sleep(200);
     
-    // Slow down for third reel - all rows show same symbol in column 2
+    // Continue animating column 2 only
     for (let i = 0; i < 5; i++) {
-        const col2 = getRandomSymbol();
-        rows.forEach(row => {
-            const symbols = row.querySelectorAll('.slot-symbol');
-            symbols[2].textContent = col2;
-        });
-        await sleep(200);
+        row3Symbols[2].textContent = row2Symbols[2].textContent;
+        row2Symbols[2].textContent = row1Symbols[2].textContent;
+        row1Symbols[2].textContent = getRandomSymbol();
+        await sleep(500);
     }
     
-    // Stop third reel
-    rows.forEach(row => {
-        const symbols = row.querySelectorAll('.slot-symbol');
-        symbols[2].textContent = getSymbolByNumber(c);
-    });
+    // Set column 2 to result in row 1
+    row3Symbols[2].textContent = row2Symbols[2].textContent;
+    row2Symbols[2].textContent = row1Symbols[2].textContent;
+    row1Symbols[2].textContent = getSymbolByNumber(c);
+    await sleep(200);
+    
+    // Final scroll down - now row 2 has complete result
+    row3Symbols[2].textContent = row2Symbols[2].textContent;
+    row2Symbols[2].textContent = row1Symbols[2].textContent;
+    row1Symbols[2].textContent = getRandomSymbol();
+    await sleep(1000);
     
     // Highlight winning row
     await sleep(500);
