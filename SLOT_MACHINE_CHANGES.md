@@ -1,9 +1,9 @@
 # Slot Machine Changes
 
 ## Summary
-This document describes the changes made to fix two issues with the slot machine game:
+This document describes the changes made to fix slot machine animation issues:
 
-1. **Column Synchronization**: All three rows now show the same symbols in each column during spinning
+1. **Independent Symbol Animation**: Each of the 9 symbol positions (3 rows × 3 columns) now animates independently during spinning, creating a more realistic slot machine effect
 2. **Lever Animation**: Only the red ball moves down when pulling the lever, not the entire lever handle
 
 ## Changes Made
@@ -14,22 +14,11 @@ This document describes the changes made to fix two issues with the slot machine
 
 **Function**: `animateSpin(finalResult)`
 
-**Change**: Modified the animation logic to synchronize symbols by column instead of by individual symbol position.
+**Change**: Modified the animation logic so each symbol position animates independently instead of synchronizing by column.
 
 **Before**:
 ```javascript
-// Each symbol animated independently
-rows.forEach(row => {
-    const symbols = row.querySelectorAll('.slot-symbol');
-    symbols.forEach(symbol => {
-        symbol.textContent = getRandomSymbol();
-    });
-});
-```
-
-**After**:
-```javascript
-// All symbols in same column show same value
+// All symbols in same column showed same value (INCORRECT)
 const col0 = getRandomSymbol();
 const col1 = getRandomSymbol();
 const col2 = getRandomSymbol();
@@ -41,11 +30,24 @@ rows.forEach(row => {
 });
 ```
 
-This change was applied to:
-- Fast spin animation (20 iterations)
-- First reel slow down (5 iterations)
-- Second reel slow down (5 iterations)
-- Third reel slow down (5 iterations)
+**After**:
+```javascript
+// Each symbol position animates independently (CORRECT)
+rows.forEach(row => {
+    const symbols = row.querySelectorAll('.slot-symbol');
+    symbols[0].textContent = getRandomSymbol();
+    symbols[1].textContent = getRandomSymbol();
+    symbols[2].textContent = getRandomSymbol();
+});
+```
+
+During the stopping phase, symbols "scroll down" within each column:
+- Row 3 gets Row 2's value
+- Row 2 gets Row 1's value  
+- Row 1 gets the game result (for that column)
+- Then one more scroll cycle puts the result in Row 2 (the winning row)
+
+This matches the Python version's behavior where each symbol position is independent during animation.
 
 ### 2. HTML Version (styles.css)
 
@@ -140,15 +142,17 @@ The HTML version was tested using a local HTTP server and browser automation:
 3. Placed a bet of $100
 4. Pulled the lever multiple times
 5. Verified that:
-   - All symbols in each column matched across all three rows during spinning
+   - Each symbol position animates independently during spinning
+   - Symbols do not synchronize by column
    - The lever ball moved down while the handle stayed fixed
    - The game logic still worked correctly (balance updates, win detection, etc.)
 
 ### Visual Verification
 Screenshots confirmed the expected behavior:
-- All three rows showing 7️⃣ in column 1, 7️⃣ in column 2, ⭐ in column 3
-- Second spin showing 7️⃣ in column 1, ⭐ in column 2, ⭐ in column 3
-- Lever displayed correctly with red ball at top and gradient handle below
+- Each symbol position animates independently
+- After spin completes, Row 2 (winning row) shows the game result
+- Rows 1 and 3 show random symbols
+- Example result: Row 1: 🔔,🍋,🍋 | Row 2: 🔔,🔔,🍋 | Row 3: 🍒,7️⃣,🍒
 
 ### Python Version
 The Python version changes were verified to:
