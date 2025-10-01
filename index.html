@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Alignment Fix - Visual Comparison</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        h2 {
+            color: #555;
+            margin-top: 30px;
+        }
+        .comparison-container {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+        }
+        .description {
+            margin: 15px 0;
+            color: #666;
+            line-height: 1.6;
+        }
+        .changes-list {
+            background: #f9f9f9;
+            padding: 15px;
+            border-left: 4px solid #4CAF50;
+            margin: 15px 0;
+        }
+        .changes-list li {
+            margin: 8px 0;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎮 Button Alignment Fix - Visual Comparison</h1>
+    
+    <div class="comparison-container">
+        <h2>Main Menu - Before & After</h2>
+        <img src="comparison_main_menu.png" alt="Main Menu Comparison">
+        <div class="description">
+            <p><strong>The Issue:</strong> Button text was positioned too low in all three main menu buttons, making them appear unbalanced.</p>
+            <p><strong>The Fix:</strong> Adjusted the y-coordinate calculation from <code>y - height/2 - 5</code> to <code>y - height/2 - 8</code> to properly center the text vertically.</p>
+        </div>
+    </div>
+
+    <div class="comparison-container">
+        <h2>Blackjack Screen - After Fix</h2>
+        <img src="comparison_blackjack.png" alt="Blackjack Comparison">
+        <div class="description">
+            <p><strong>The Issue:</strong> Three buttons had misaligned text (Start, Draw Card, and Reveal Dealer buttons).</p>
+            <p><strong>The Fix:</strong> Adjusted y-coordinates for better vertical centering:</p>
+            <ul>
+                <li>Start button: -243 → -238 (5 pixels up)</li>
+                <li>Draw Card button: -243 → -238 (5 pixels up)</li>
+                <li>Reveal Dealer button: 223 → 232 (9 pixels up)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="changes-list">
+        <h2>Summary of Changes</h2>
+        <ul>
+            <li>✅ Fixed text alignment in <code>main.py</code> (1 line changed)</li>
+            <li>✅ Fixed text alignment in <code>blackjack.py</code> (3 lines changed)</li>
+            <li>✅ Total: 2 files modified, 4 lines changed</li>
+            <li>✅ No functional changes - only visual improvements</li>
+            <li>✅ All buttons now have properly centered text</li>
+        </ul>
+    </div>
+</body>
+</html>

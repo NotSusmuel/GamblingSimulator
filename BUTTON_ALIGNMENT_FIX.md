@@ -86,4 +86,6 @@ Screenshots were taken before and after the fix to verify proper text alignment 
 - `screenshots_after_blackjack.png` - Blackjack screen after fix
 - `comparison_main_menu.png` - Side-by-side comparison of main menu
 - `comparison_blackjack.png` - Blackjack screen showcase
+- `button_alignment_fix_summary.png` - Full summary screenshot
+- `index.html` - Interactive HTML page showing all comparisons
 
