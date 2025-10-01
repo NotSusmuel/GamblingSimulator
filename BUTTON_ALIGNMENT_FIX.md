@@ -58,10 +58,16 @@ reveal_dealer_button.goto(0, 232)
 
 ## Visual Comparison
 
-### Main Menu
-The three main menu buttons now have properly centered text that aligns with the visual center of each button rectangle.
+### Main Menu - Before and After
+![Main Menu Comparison](comparison_main_menu.png)
 
-### Blackjack Screen
+The three main menu buttons now have properly centered text that aligns with the visual center of each button rectangle. You can see in the comparison:
+- **Before**: Text appears too low in all buttons
+- **After**: Text is properly centered vertically
+
+### Blackjack Screen - After Fix
+![Blackjack After Fix](comparison_blackjack.png)
+
 All three buttons (Start, Draw Card, and Reveal Dealer) now have properly centered text within their button boundaries.
 
 ## Impact
@@ -73,3 +79,11 @@ All three buttons (Start, Draw Card, and Reveal Dealer) now have properly center
 
 ## Testing
 Screenshots were taken before and after the fix to verify proper text alignment in buttons.
+
+## Screenshots Available
+- `screenshots_before_main.png` - Main menu before fix
+- `screenshots_after_main.png` - Main menu after fix
+- `screenshots_after_blackjack.png` - Blackjack screen after fix
+- `comparison_main_menu.png` - Side-by-side comparison of main menu
+- `comparison_blackjack.png` - Blackjack screen showcase
+
